@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
-    public int prevResult = 0;
+public class MainActivity extends AppCompatActivity implements ResultHoster{
+    private int prevResult = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     public void openSecondFragmentFromActivity(int min, int max) {
         openSecondFragment(min, max);
     }
-
+    @Override
     public void setPrevResult(int result) {
         prevResult = result;
     }
-
+    @Override
     public int getPrevResult() {
         return prevResult;
     }

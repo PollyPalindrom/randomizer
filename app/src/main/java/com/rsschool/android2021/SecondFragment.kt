@@ -34,7 +34,8 @@ class SecondFragment : Fragment() {
         val res = generate(min, max)
         result?.text = res.toString()
         val mainActivity = activity as MainActivity?
-        mainActivity?.setPrevResult(res)
+        val resultHost = activity as ResultHoster?
+        resultHost?.setPrevResult(res)
         backButton?.setOnClickListener {
             mainActivity?.supportFragmentManager?.popBackStack()
         }

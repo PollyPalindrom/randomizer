@@ -74,10 +74,10 @@ class FirstFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val mainActivity = activity as MainActivity?
+        val mainActivity = activity as ResultHoster?
         var result: TextView? = null
         result = view?.findViewById(R.id.previous_result)
-        result?.text = "Previous result: " + mainActivity?.prevResult.toString()
+        result?.text = "Previous result: " + mainActivity?.getPrevResult().toString()
     }
 
     companion object {
