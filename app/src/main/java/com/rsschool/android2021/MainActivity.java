@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements ResultHoster{
-    private int prevResult = 0;
+public class MainActivity extends AppCompatActivity implements ResultHoster {
+    private int previousResult = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) openFirstFragment(prevResult);
+        if (savedInstanceState == null) openFirstFragment(previousResult);
     }
 
     private void openFirstFragment(int previousNumber) {
@@ -34,12 +34,14 @@ public class MainActivity extends AppCompatActivity implements ResultHoster{
     public void openSecondFragmentFromActivity(int min, int max) {
         openSecondFragment(min, max);
     }
+
     @Override
-    public void setPrevResult(int result) {
-        prevResult = result;
+    public void setPreviousResult(int result) {
+        previousResult = result;
     }
+
     @Override
-    public int getPrevResult() {
-        return prevResult;
+    public int getPreviousResult() {
+        return previousResult;
     }
 }

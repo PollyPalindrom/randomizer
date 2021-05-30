@@ -35,20 +35,18 @@ class FirstFragment : Fragment() {
         previousResult?.text = "Previous result: ${result.toString()}"
         val mainActivity = activity as MainActivity?
         generateButton?.setOnClickListener {
-            if (checkNumber(minValue?.text.toString()) && checkNumber(maxValue?.text.toString())){
-                if(minValue?.text.toString().toInt()<maxValue?.text.toString().toInt()){
+            if (checkNumber(minValue?.text.toString()) && checkNumber(maxValue?.text.toString())) {
+                if (minValue?.text.toString().toInt() < maxValue?.text.toString().toInt()) {
                     mainActivity?.openSecondFragmentFromActivity(
                         minValue?.text.toString().toInt(),
                         maxValue?.text.toString().toInt()
                     )
-                }
-                else Toast.makeText(
+                } else Toast.makeText(
                     mainActivity?.applicationContext,
                     "Wrong input :3",
                     Toast.LENGTH_LONG
                 ).show()
-            }
-            else {
+            } else {
                 Toast.makeText(
                     mainActivity?.applicationContext,
                     "Wrong input :3",
@@ -61,8 +59,8 @@ class FirstFragment : Fragment() {
     private fun checkNumber(numberToCompare: String): Boolean {
         var sum: Long = 0
         if (numberToCompare == "") return false
-        if (numberToCompare.length < Integer.MAX_VALUE.toString().length) return true
-        if (numberToCompare.length > Integer.MAX_VALUE.toString().length) return false
+        if (numberToCompare.toLong() < Integer.MAX_VALUE) return true
+        if (numberToCompare.toLong() > Integer.MAX_VALUE) return false
         else {
             for (i in numberToCompare.indices) {
                 sum = sum * 10 + numberToCompare[i].toInt()
@@ -77,7 +75,7 @@ class FirstFragment : Fragment() {
         val mainActivity = activity as ResultHoster?
         var result: TextView? = null
         result = view?.findViewById(R.id.previous_result)
-        result?.text = "Previous result: " + mainActivity?.getPrevResult().toString()
+        result?.text = "Previous result: " + mainActivity?.getPreviousResult().toString()
     }
 
     companion object {
