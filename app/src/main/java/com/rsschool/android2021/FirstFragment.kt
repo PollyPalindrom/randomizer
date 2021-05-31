@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import java.lang.NumberFormatException
 
 class FirstFragment : Fragment() {
 
@@ -58,8 +59,13 @@ class FirstFragment : Fragment() {
 
     private fun checkNumber(numberToCompare: String): Boolean {
         var sum: Long = 0
+        try {
+            numberToCompare.toLong()
+        } catch (e: NumberFormatException) {
+            return false
+        }
         if (numberToCompare == "") return false
-        if (numberToCompare.toLong() < Integer.MAX_VALUE) return true
+        if (numberToCompare.toLong() <= Integer.MAX_VALUE.toLong()) return true
         if (numberToCompare.toLong() > Integer.MAX_VALUE) return false
         else {
             for (i in numberToCompare.indices) {
@@ -74,8 +80,16 @@ class FirstFragment : Fragment() {
         super.onResume()
         val mainActivity = activity as ResultHoster?
         var result: TextView? = null
+        var minResult: EditText? = null
+        var maxResult: EditText? = null
+        minResult = view?.findViewById(R.id.min_value)
+        maxResult = view?.findViewById(R.id.max_value)
         result = view?.findViewById(R.id.previous_result)
         result?.text = "Previous result: " + mainActivity?.getPreviousResult().toString()
+        minResult?.setText("")
+        maxResult?.setText("")
+
+
     }
 
     companion object {
